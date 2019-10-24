@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>CC-小咖</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <script type="text/javascript">
+        (function (doc, win, undefined) {
+           var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window? 'orientationchange' : 'resize',
+             recalc = function () {
+               var clientWidth = docEl.clientWidth;
+               if (clientWidth === undefined) return;
+               docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+             };
+           if (doc.addEventListener === undefined) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false)
+        })(document, window);
+    </script>   
+    <script type="text/javascript" charset="UTF-8" src="https://res.cdn.openinstall.io/openinstall.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>          
+    <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }       
+            li { list-style: none; }            
+            html, body {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+            img{display: block; }                                   
+                            
+            .container{
+                width: 100%;
+                height: 100%;
+                background-size: 100% 100%;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;           
+            }
+            .btn {
+                width: 200px;
+                height: 80px;
+                border: 1px solid #3991f6;
+                color: #3991f6;
+                font-size: 20px;
+                background: #fff;
+            }
+    </style>
+    </head>     
+        
+    <body>
+        <div class="container">     
+            <button class="btn" id="downbtn">立即下载</button>
+          
+        <script type="text/javascript">
+            //openinstall初始化时将与openinstall服务器交互，应尽可能早的调用
+            /*web页面向app传递的json数据(json string/js Object)，应用被拉起或是首次安装时，通过相应的android/ios api可以获取此数据*/
+            var data = OpenInstall.parseUrlParams();//openinstall.js中提供的工具函数，解析url中的所有查询参数
+            var openinstall = new OpenInstall({
+                /*appKey必选参数，openinstall平台为每个应用分配的ID*/
+                appKey : "k5yj3j",
+                /*可选参数，自定义android平台的apk下载文件名，只有apk在openinstall托管时才有效；个别andriod浏览器下载时，中文文件名显示乱码，请慎用中文文件名！*/
+//              apkFileName : 'com.fm.openinstalldemo-v2.2.0.apk',
+                /*可选参数，是否优先考虑拉起app，以牺牲下载体验为代价*/
+                preferWakeup:true,
+                /*自定义遮罩的html*/
+                //mask:function(){
+                //  return "<div id='openinstall_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+                //},
+                /*openinstall初始化完成的回调函数，可选*/
+                 onready : function() {
+                     var m = this, downbtn = document.getElementById("downbtn");
+                     downbtn.style.visibility = "visible";
+         
+                     /*在app已安装的情况尝试拉起app*/
+                     m.schemeWakeup();
+                     /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+                     downbtn.onclick = function() {
+                         m.wakeupOrInstall();
+                         return false;
+                     }
+                 }
+            }, data);
+        
+        </script>
+        <script>
+           //download
+            var u = navigator.userAgent
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1 //g
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios终端         
+            function download() {
+                if(isAndroid) { 
+                    return false
+                } else {
+                    window.location.href = 'https://app-k5yj3j.openinstall.io/js-test?url=https%3A%2F%2Fwww.baidu.com';
+                }
+            }
+            
+            var btn = document.querySelector('.btn');
+            btn.onclick =function () {
+                download()
+            }
+
+        </script>    
+    
+
+</body>
+</html>
