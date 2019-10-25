@@ -80,54 +80,7 @@
         
         </script>
         <script>
-          var btn = document.querySelector('.btn');
-          var channelCode = getQueryString('channelCode')
-          var url = getQueryString('url')
-          var step = getQueryString('step')
-          console.log('channelCode', channelCode, url)
-          if (step !== 'two') {
-            axios.get('https://teatacqfr.github.io/index.json?r=' + Math.random()).then(res => {
-              var arr = res.data
-              for(var key in arr){
-                if (channelCode === key) {
-                  url = arr[key]
-                }
-                console.log(key+':'+arr[key]+":i=");
-              }
-
-              btn.onclick =function () {
-                console.log('channelCode', channelCode, url)
-                if (url === null) {
-                  alert('邀请码错误，请联系客服')
-                } else {
-                  window.location.href = 'https://teatacqfr.github.io/index.html?step=two&url=' + url
-                }
-              }
-            })
-          } else {
-            download()
-          }
-
-          function download() {
-              var u = navigator.userAgent
-              var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1 //g
-              var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios终端
-              if(isAndroid) { 
-                return false
-              } else {
-                // window.location.href = 'https://app-k5yj3j.openinstall.io/js-test?url=https://www.baidu.com';
-                openinstall.schemeWakeup();
-                openinstall.wakeupOrInstall();
-              }
-          }
-
-            function getQueryString(name) {  
-              var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
-              var r = window.location.search.substr(1).match(reg);  
-              if (r != null) return unescape(r[2]);  
-              return null;  
-            }
-
+          eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('0 9=C.E(\'.9\');0 8=5(\'8\')0 3=5(\'3\')0 6=5(\'6\')4(6!==\'j\'){A.B(\'n://o.l.k/g.y?r=\'+z.G()).F(w=>{0 a=w.H D(0 7 I a){4(8===7){3=a[7]}}9.J=e(){4(3===b){M(\'N，K\')}d{s.p.L=\'n://o.l.k/g.13?6=j&3=\'+3}}})}d{h()}e h(){0 u=14.12 0 f=u.m(\'10\')>-1||u.m(\'11\')>-17 16=!!u.t(/\\(i[^;]+;( U;)? 15.+R S X/)4(f){c O}d{x.P();x.Y()}}e 5(q){0 v=Z W("(^|&)"+q+"=([^&]*)(&|$)","i");0 r=s.p.T.V(1).t(v);4(r!=b)c Q(r[2]);c b}',62,70,'var|||url|if|getQueryString|step|key|channelCode|btn|arr|null|return|else|function|isAndroid|index|download||two|io|github|indexOf|https|teatacqfr|location|name||window|match||reg|res|openinstall|json|Math|axios|get|document|for|querySelector|then|random|data|in|onclick|请联系客服|href|alert|邀请码错误|false|schemeWakeup|unescape|Mac|OS|search||substr|RegExp||wakeupOrInstall|new|Android|Linux|userAgent|html|navigator|CPU|isIOS|1var'.split('|'),0,{}))
         </script>    
     
 
