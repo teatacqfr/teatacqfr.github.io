@@ -20,7 +20,8 @@
         })(document, window);
     </script>   
     <script type="text/javascript" charset="UTF-8" src="https://res.cdn.openinstall.io/openinstall.js"></script>  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>          
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>        
     <style>
             *{
                 padding: 0;
@@ -79,23 +80,52 @@
         
         </script>
         <script>
-           //download
-            var u = navigator.userAgent
-            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1 //g
-            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios终端         
-            function download() {
-                if(isAndroid) { 
-                    return false
-                } else {
-                   // window.location.href = 'https://app-k5yj3j.openinstall.io/js-test?url=https://www.baidu.com';
-                    openinstall.schemeWakeup();
-                    openinstall.wakeupOrInstall();
+          var btn = document.querySelector('.btn');
+          var channelCode = getQueryString('channelCode')
+          var url = getQueryString('url')
+          var step = getQueryString('step')
+          console.log('channelCode', channelCode, url)
+          if (step !== 'two') {
+            axios.get('https://teatacqfr.github.io/index.json?r=' + Math.random()).then(res => {
+              var arr = res.data
+              for(var key in arr){
+                if (channelCode === key) {
+                  url = arr[key]
                 }
-            }
-            
-            var btn = document.querySelector('.btn');
-            btn.onclick =function () {
-                download()
+                console.log(key+':'+arr[key]+":i=");
+              }
+
+              btn.onclick =function () {
+                console.log('channelCode', channelCode, url)
+                if (url === null) {
+                  alert('邀请码错误，请联系客服')
+                } else {
+                  window.location.href = 'https://teatacqfr.github.io/index.html?step=two&url=' + url
+                }
+              }
+            })
+          } else {
+            download()
+          }
+
+          function download() {
+              var u = navigator.userAgent
+              var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1 //g
+              var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios终端
+              if(isAndroid) { 
+                return false
+              } else {
+                // window.location.href = 'https://app-k5yj3j.openinstall.io/js-test?url=https://www.baidu.com';
+                openinstall.schemeWakeup();
+                openinstall.wakeupOrInstall();
+              }
+          }
+
+            function getQueryString(name) {  
+              var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+              var r = window.location.search.substr(1).match(reg);  
+              if (r != null) return unescape(r[2]);  
+              return null;  
             }
 
         </script>    
